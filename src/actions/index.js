@@ -1,5 +1,9 @@
 import {
     ADD_ITEM,
+
+    TEST_ADD_ITEM_SUCCESS,
+    TEST_ADD_ITEM_FAILURE,
+
     DELETE_ITEM,
     EDIT_ITEM,
     CHECKED_ITEM,
@@ -11,3 +15,10 @@ export const addItem = () => {
         type: ADD_ITEM,
     };
 };
+
+export const itemAdded = ({ values }) => {
+    return {
+        type: 'TEST_ADD_ITEM_SUCCESS',
+        payload: values.searchField
+    }
+}

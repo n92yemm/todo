@@ -1,4 +1,8 @@
 export const ADD_ITEM = 'ADD_ITEM';
+
+export const TEST_ADD_ITEM_SUCCESS = 'TEST_ADD_ITEM_SUCCESS';
+export const TEST_ADD_ITEM_FAILURE = 'TEST_ADD_ITEM_FAILURE';
+
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 
