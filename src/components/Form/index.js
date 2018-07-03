@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, FieldArray, reduxForm } from 'redux-form';
 
 import { addTodoItem } from '../../actions/addTodoItem';
 import { changeTodoItemChecked } from '../../actions/changeTodoItemChecked';
@@ -26,7 +26,14 @@ class Form extends React.Component {
                 {
                     items && 
                         <div>
-                            { items.map((item, index) => <Row todoItem={ item } changeItemHandler={ this.changeItemHandler } key={ index } />) }
+                            { items.map((item, index) => <FieldArray 
+                                todoItem={ item } 
+                                changeItemHandler={ this.changeItemHandler } 
+                                name={`${item}.todo`} 
+                                component={Row} 
+                                key={index}
+                                />) 
+                            }
                         </div>
                 }
             </form>

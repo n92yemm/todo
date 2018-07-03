@@ -7,35 +7,6 @@ const initialState = {
     items: []
 };
 
-
-// {
-//     ['ADD_TODO_ITEM']: (state, action) => {}
-// }
-
-// export function todoItems(state = initialState, action) {
-//     switch (action.type) {
-//     case 'TODO_ITEM_ADDED':
-//         return {
-//             ...state,
-//             items: state.items.concat([{
-//                 text: action.payload,
-//                 checked: false
-//             }])
-//         };
-//     case 'TODO_ITEM_CHECKED_CHANGED': 
-//         return {
-//             ...state,
-//             items: state.items.map(item => {
-//                 if(item.text === action.payload.payload.text) { 
-//                     return { ...item, checked: !item.checked }
-//                 }
-//                 return item;
-//             })
-//         };
-//     default: return {...state};
-//     }
-// }
-
 const todoItemAdded = (state, action) => {
     return {
         ...state,
@@ -58,7 +29,7 @@ const todoItemCheckedChanged = (state, action) => {
     };
 }; 
 
-export const todoItems = createReducer([], {
+export const todoItems = createReducer(initialState, {
     'TODO_ITEM_ADDED': todoItemAdded,
     'TODO_ITEM_CHECKED_CHANGED': todoItemCheckedChanged
 });

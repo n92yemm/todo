@@ -3,7 +3,8 @@ import { Field } from 'redux-form';
 
 import './styles.css';
 
-let Row = (props) => {
+const Row = (props) => {
+    //console.log(props)
     let { changeItemHandler, todoItem } = props;
     let { text, checked } = props.todoItem;
     return (
