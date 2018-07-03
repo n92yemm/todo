@@ -4,10 +4,16 @@ import { Field } from 'redux-form';
 import './styles.css';
 
 let Row = (props) => {
-    let { isCheckedChanged, text } = props;
+    let { changeItemHandler, todoItem } = props;
+    let { text, checked } = props.todoItem;
     return (
         <div>
-            <Field checked={isCheckedChanged} type='checkbox' />
+            <Field 
+                name="isTodoItemChecked" 
+                type='checkbox' 
+                component="input" 
+                checked={ checked } 
+                onClick={ changeItemHandler(todoItem) } />
             <span>{ text }</span>
         </div>
     );

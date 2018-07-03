@@ -48,6 +48,14 @@ const config = {
     },
     plugins: [
         htmlPlugin
-    ]
+    ],
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 8080,
+        clientLogLevel: "none",
+        historyApiFallback: true,
+        watchContentBase: true
+    }
 };
 module.exports = config;

@@ -38,12 +38,12 @@ module.exports = {
         "no-console": "off",
         "react/jsx-uses-react": "error", 
         "react/jsx-uses-vars": "error",
-        "react/prop-types": [
-            <enabled />, 
-            { 
-                ignore: <ignore />, 
-                customValidators: <customValidator /> 
-            }
-        ]
+        // "react/prop-types": [
+        //     <enabled />, 
+        //     { 
+        //         ignore: <ignore />, 
+        //         customValidators: <customValidator /> 
+        //     }
+        // ]
     }
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 
 import './styles.css';
-import FormContainer from '../FormContainer';
+import Form from '../Form';
 
 let Wrapper = () => {
     return (
         <div className='container'>
-            <FormContainer />  
+            <Form />  
         </div>
     );
 };
