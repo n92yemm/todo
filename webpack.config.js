@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const htmlPlugin = new HtmlWebPackPlugin({
     template: './src/index.html',
@@ -28,26 +29,17 @@ const config = {
             },
             {
                 test: /\.css$/,
-                use: [
+                use: ExtractTextPlugin.extract(
                     {
-                        loader: 'style-loader'
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            importLoaders: 1,
-                            localIdentName: '[name]_[local]_[hash:base64]',
-                            sourceMap: true,
-                            minimize: true
-                        }
-                    }
-                ]
+                        fallback: 'style-loader',
+                        use: ['css-loader']
+                    })
             }
         ]
     },
     plugins: [
-        htmlPlugin
+        htmlPlugin,
+        new ExtractTextPlugin('styles.css')
     ],
     devServer: {
         contentBase: path.join(__dirname, "dist"),

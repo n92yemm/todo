@@ -1,0 +1,17 @@
+.paddingElem {
+    padding: 5px;
+    background-color: #f3f3f3;
+}
+
+.todoItem {
+    width: 100%;
+    margin: 2px 0;
+}
+
+.checkedTodo {
+    text-decoration: line-through;
+}
+
+.textTodo {
+    margin-left: 3px;
+}

@@ -29,9 +29,21 @@ const todoItemCheckedChanged = (state, action) => {
     };
 }; 
 
+const todoItemEdited = (state, action) => {
+    return {
+        ...state,
+        items: state.items.map(item => {
+            if(item.text === action.payload.payload.text) {
+                return {...item, text: action.payload.payload.text}
+            }
+        })
+    };
+};
+
 export const todoItems = createReducer(initialState, {
     'TODO_ITEM_ADDED': todoItemAdded,
-    'TODO_ITEM_CHECKED_CHANGED': todoItemCheckedChanged
+    'TODO_ITEM_CHECKED_CHANGED': todoItemCheckedChanged,
+    'TODO_ITEM_EDITED': todoItemEdited
 });
 
 export default combineReducers({
