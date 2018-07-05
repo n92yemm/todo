@@ -5,9 +5,23 @@ import { todoItemAdded } from '../actions/addTodoItem';
 import { todoItemCheckedChanged } from '../actions/changeTodoItemChecked';
 
 function* addTodoItem() {
-    const itemForm = yield select(({ form }) => form.toDo);
-    yield put(todoItemAdded(itemForm));
-    yield put(reset('toDo'));
+    try {
+        const itemForm = yield select(({ form }) => form.toDo);
+        const response = yield call(fetch, 'http://localhost:9091/todo', 
+            {
+                method: 'POST',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({text: itemForm.values.searchField, checked: false})
+            });
+        yield put(todoItemAdded(itemForm));
+        yield put(reset('toDo'));
+    }
+    catch(e) {
+        console.log(e);
+    }
 }
 
 function* changeCheckedTodoItem(item) {

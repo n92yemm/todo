@@ -23,8 +23,8 @@ export default RowTodo;
 
 RowTodo.propTypes = {
     changeItemHandler: PropTypes.func,
-    todoItem: PropTypes.objectOf({
-        text: PropTypes.string,
-        checked: PropTypes.bool,
-    }),
+    todoItem: PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        checked: PropTypes.bool.isRequired,
+    })
 };

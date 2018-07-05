@@ -1,5 +1,7 @@
 import Router from 'koa-router';
-import { getAllTodos } from '../services/todo.service';
+import { getAllTodos, addTodo } from '../services/todo.service';
+import createTodoDto from '../dto/todo/create-todo.dto';
+import updateTodoDto from '../dto/todo/update-todo.dto';
 
 const getAllTodosAction = async (ctx) => {
     const todos = await getAllTodos();
@@ -8,9 +10,22 @@ const getAllTodosAction = async (ctx) => {
     };
 };
 
+const addTodoAction = async (ctx) => {
+    const todo = await addTodo(ctx.request.body);
+    ctx.body = {
+        data: todo,
+    };
+};
+
+// const updateTodoAction = async (ctx) => {
+//     const todos = await 
+// };
 
 export const todosController = () => {
     const todoRouter = Router();
     todoRouter.get('/todo', getAllTodosAction);
+    todoRouter.post('/todo', createTodoDto, addTodoAction);
+    //todoRouter.put('/todo', updateTodoDto, updateTodoAction);
+
     return todoRouter.routes();
 };
