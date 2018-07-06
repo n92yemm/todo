@@ -7,18 +7,27 @@ import { addTodoItem } from '../../actions/addTodoItem';
 import ListTodo from '../ListTodo';
 import './styles.css';
 
+const required = value => value ? undefined : 'Required';
+const minLength = min => value => value && value.length < min ? `Must be ${min} characters or more` : undefined;
+const minLength1 = minLength(1);
+
 class FormTodo extends React.Component {
-    addItemHandler = event => {
-        event.preventDefault();
+    addItemHandler = () => {
         this.props.addTodoItem();
     } 
     render() {
+        const { handleSubmit, submitting } = this.props;
         return (
             <div id="todoContainer">
-                <form >
+                <form onSubmit={ handleSubmit(this.addItemHandler) }>
                     <div id="searchRow">
-                        <Field id="typeTodo" className="paddingElem" name="searchField" component="input" type="text" placeholder="Add an item..." />
-                        <button id="addTodo" className="paddingElem" onClick={ this.addItemHandler }>Add item</button>
+                        <Field id="typeTodo" className="paddingElem" 
+                            validate={[ required, minLength1 ]}
+                            name="searchField" 
+                            component="input" 
+                            type="text" 
+                            placeholder="Add an item..." />
+                        <button id="addTodo" type="submit" className="paddingElem" disabled={submitting}>Add item</button>
                     </div>
                 </form>
                 <ListTodo />
@@ -42,5 +51,8 @@ export default connect(mapStateToProps, {
 })(withFormTodo);
 
 FormTodo.propTypes = {
-    addTodoItem: PropTypes.func
+    addTodoItem: PropTypes.func,
+    dirty: PropTypes.bool,
+    handleSubmit: PropTypes.func, 
+    submitting: PropTypes.bool
 };

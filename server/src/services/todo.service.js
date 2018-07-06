@@ -8,6 +8,6 @@ export const addTodo = (body) => {
     return Todo.create(body);
 };
 
-// export const updateTodo = (body) => {
-//     return Todo.
-// } 
+export const updateTodo = (body) => {
+    return Todo.update(body);
+};
