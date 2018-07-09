@@ -21,7 +21,7 @@ const updateTodoAction = async (ctx) => {
     const todo = await updateTodo(ctx.request.body);
     ctx.body = {
         data: todo
-    }; 
+    };
 };
 
 export const todosController = () => {

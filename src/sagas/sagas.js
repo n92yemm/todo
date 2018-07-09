@@ -1,8 +1,13 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects';
 import { reset } from 'redux-form';
-import { ADD_TODO_ITEM, CHANGE_TODO_ITEM_CHECKED } from '../constants/actionTypes';
+import { 
+    ADD_TODO_ITEM, 
+    CHANGE_TODO_ITEM_CHECKED,
+    GET_TODO_ITEMS
+} from '../constants/actionTypes';
 import { todoItemAdded, addTodoItemFailure } from '../actions/addTodoItem';
 import { todoItemCheckedChanged } from '../actions/changeTodoItemChecked';
+import { getTodo, getTodoFailure } from '../actions/getTodoItems';
 
 const baseUrl = 'http://localhost:9091';
 
@@ -20,13 +25,25 @@ const schema = {
     checked: false
 };
 
-const callApi = (url, options) => () => {
+const callApi = (url, options, method) => () => {
     if(options.body) {
         options.body = JSON.stringify(options.body);
     }
-    return fetch(`${baseUrl}/${url}`, {...defaultOptions, ...options})
+    defaultOptions.method = method ? method : 'POST';
+    return fetch(`${baseUrl}/${url}`, {...defaultOptions, ...options })
         .then(res => res.json());
 };
+
+function* getTodoItems() {
+    try {
+        const response = yield call(callApi('todo', 'GET'));
+        console.log(response);
+        yield put(getTodo(response));
+    }
+    catch(e) {
+        yield put(getTodoFailure);
+    }
+}
 
 function* addTodoItem() {
     try {
@@ -39,9 +56,9 @@ function* addTodoItem() {
                 text: newText
             } 
         };
-        yield call(callApi('todo', options));
-            
-        yield put(todoItemAdded(itemForm));
+        const response = yield call(callApi('todo', options));
+
+        yield put(todoItemAdded(response));
         yield put(reset('toDo'));
     }
     catch(e) {
@@ -49,18 +66,20 @@ function* addTodoItem() {
     }
 }
 
-function* changeCheckedTodoItem(item) {
+function* changeCheckedTodoItem(action) { 
     const options = { 
         body: {
-            ...item.payload
+            ...action.payload,
+            checked: !action.payload.checked
         } 
     };
-    yield call(callApi('todo', options));
-    yield put(todoItemCheckedChanged(item));
+    yield put(todoItemCheckedChanged(action));
+    yield call(callApi('todo', options, 'PUT'));
 }
 
 export default function* rootSaga() {
     yield * [
+        takeEvery(GET_TODO_ITEMS, getTodoItems),
         takeEvery(ADD_TODO_ITEM, addTodoItem),
         takeEvery(CHANGE_TODO_ITEM_CHECKED, changeCheckedTodoItem)
     ];

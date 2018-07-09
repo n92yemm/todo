@@ -1,6 +1,7 @@
 import {
     EDIT_TODO_ITEM,
-    TODO_ITEM_EDITED
+    TODO_ITEM_EDITED,
+    EDIT_TODO_ITEM_FAILURE
 } from '../constants/actionTypes';
 
 export const editTodoItem = () => {
@@ -9,9 +10,15 @@ export const editTodoItem = () => {
     };
 };
 
-export const todoItemEdited = ({ values }) => {
+export const todoItemEdited = ({ data }) => {
     return {
         type: TODO_ITEM_EDITED,
-        payload: values.searchField
+        payload: data
+    };
+};
+
+export const editTodoItemFailure = () => {
+    return {
+        type: EDIT_TODO_ITEM_FAILURE
     };
 };

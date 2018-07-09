@@ -10,10 +10,10 @@ export const addTodoItem = () => {
     };
 };
 
-export const todoItemAdded = ({ values }) => {
+export const todoItemAdded = ({ data }) => {
     return {
         type: TODO_ITEM_ADDED,
-        payload: values.searchField
+        payload: data
     };
 };
 

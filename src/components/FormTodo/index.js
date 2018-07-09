@@ -47,7 +47,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    addTodoItem,
+    addTodoItem
 })(withFormTodo);
 
 FormTodo.propTypes = {

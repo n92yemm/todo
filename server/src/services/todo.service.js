@@ -9,5 +9,5 @@ export const addTodo = (body) => {
 };
 
 export const updateTodo = (body) => {
-    return Todo.update(body);
+    return Todo.findOneAndUpdate({ _id: body._id }, body);
 };
