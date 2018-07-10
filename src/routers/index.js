@@ -15,11 +15,4 @@ class RouterComponent extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-      
-    };
-};
-
-
-export default connect(mapStateToProps)(RouterComponent);
+export default connect()(RouterComponent);

@@ -17,8 +17,9 @@ export const todoItemEdited = ({ data }) => {
     };
 };
 
-export const editTodoItemFailure = () => {
+export const editTodoItemFailure = (error) => {
     return {
-        type: EDIT_TODO_ITEM_FAILURE
+        type: EDIT_TODO_ITEM_FAILURE,
+        payload: error
     };
 };

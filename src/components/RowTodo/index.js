@@ -14,7 +14,20 @@ const RowTodo = (props) => {
                 component="input" 
                 checked={ checked } 
                 onClick={ changeItemHandler } />
-            <span className={checked ? 'checkedTodo textTodo' : 'textTodo'} onClick={ editItemHandler } >{ text }</span>
+            <Field 
+                onChange={ editItemHandler } 
+                className={ checked ? 'checkedTodo textTodo' : 'textTodo'} 
+                name="todoItemText" 
+                type='text' 
+                //component="input" 
+                component={() =>
+                    <input type="text" 
+                        onChange={ editItemHandler } 
+                        className={ checked ? 'checkedTodo textTodo' : 'textTodo'}  
+                        value={ text } 
+                    />
+                }
+            />
         </div>
     );
 };

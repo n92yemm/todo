@@ -6,20 +6,18 @@ import PropTypes from 'prop-types';
 import { addTodoItem } from '../../actions/addTodoItem';
 import ListTodo from '../ListTodo';
 import './styles.css';
+import { TODO_FORM } from '../../constants/forms';
 
 const required = value => value ? undefined : 'Required';
 const minLength = min => value => value && value.length < min ? `Must be ${min} characters or more` : undefined;
 const minLength1 = minLength(1);
 
 class FormTodo extends React.Component {
-    addItemHandler = () => {
-        this.props.addTodoItem();
-    } 
     render() {
-        const { handleSubmit, submitting } = this.props;
+        const { handleSubmit, submitting, addTodoItem } = this.props;
         return (
             <div id="todoContainer">
-                <form onSubmit={ handleSubmit(this.addItemHandler) }>
+                <form onSubmit={ handleSubmit(addTodoItem) }>
                     <div id="searchRow">
                         <Field id="typeTodo" className="paddingElem" 
                             validate={[ required, minLength1 ]}
@@ -37,7 +35,7 @@ class FormTodo extends React.Component {
 }
 
 const withFormTodo = reduxForm({
-    form: 'toDo'
+    form: TODO_FORM
 })(FormTodo);
 
 const mapStateToProps = (state) => {
@@ -52,7 +50,6 @@ export default connect(mapStateToProps, {
 
 FormTodo.propTypes = {
     addTodoItem: PropTypes.func,
-    dirty: PropTypes.bool,
     handleSubmit: PropTypes.func, 
     submitting: PropTypes.bool
 };

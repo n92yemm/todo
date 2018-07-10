@@ -17,6 +17,9 @@
 }
 
 .textTodo {
+    border: 0;
+    background-color: transparent;
+    outline: none;
     margin-left: 3px;
 }button {
     box-shadow: none;

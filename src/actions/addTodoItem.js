@@ -17,8 +17,9 @@ export const todoItemAdded = ({ data }) => {
     };
 };
 
-export const addTodoItemFailure = () => {
+export const addTodoItemFailure = (error) => {
     return {
-        type: ADD_TODO_ITEM_FAILURE
+        type: ADD_TODO_ITEM_FAILURE,
+        payload: error
     };
 };
