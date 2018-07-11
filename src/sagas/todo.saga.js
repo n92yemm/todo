@@ -10,7 +10,7 @@ import { todoItemCheckedChanged, todoItemCheckedChangedFailure } from '../action
 import { todoItemsReceived, getTodoFailure } from '../actions/getTodoItems';
 import request from '../helpers/request';
 import { TODO_URL } from '../constants/urls';
-import { TODO_FORM } from '../constants/forms';
+import { TODO_FORM, INIT_FORM } from '../constants/forms';
 
 function* getTodoItems() {
     try {
@@ -41,26 +41,29 @@ function* addTodoItem() {
 
 function* changeCheckedTodoItem(action) { 
     try {
-        console.log('change saga');
         const options = { 
             body: {
                 ...action.payload,
                 checked: !action.payload.checked
             },
         };
-        console.log('action', action)
         yield call(request.put, TODO_URL, options);
         yield put(todoItemCheckedChanged(action.payload));
     } catch(e) {
-        console.log('fail')
         yield put(addTodoItemFailure(e));
     }
+}
+
+function* initForm() {
+    console.log(1);
+    yield ;
 }
 
 export default function* todoSaga() {
     yield * [
         takeEvery(GET_TODO_ITEMS, getTodoItems),
         takeEvery(ADD_TODO_ITEM, addTodoItem),
-        takeEvery(CHANGE_TODO_ITEM_CHECKED, changeCheckedTodoItem)
+        takeEvery(CHANGE_TODO_ITEM_CHECKED, changeCheckedTodoItem),
+        takeEvery(INIT_FORM, initForm)
     ];
 }

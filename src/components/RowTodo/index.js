@@ -1,30 +1,30 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
+
 import './styles.css';
 
 const RowTodo = (props) => {
     const { changeItemHandler, editItemHandler } = props;
-    const { text, checked } = props.todoItem;
+    const { text, checked, _id } = props.todoItem;
     return (
         <div className="todoItem paddingElem">
             <Field 
-                name="isTodoItemChecked" 
+                name={`${_id}`} 
                 type='checkbox' 
                 component="input" 
                 checked={ checked } 
                 onClick={ changeItemHandler } />
             <Field 
-                onChange={ editItemHandler } 
-                className={ checked ? 'checkedTodo textTodo' : 'textTodo'} 
-                name="todoItemText" 
+                editItemHandler={editItemHandler}
+                classes={ checked ? 'checkedTodo textTodo' : 'textTodo'} 
+                name={`${_id}`} 
+                text={text}
                 type='text' 
                 //component="input" 
-                component={() =>
-                    <input type="text" 
-                        onChange={ editItemHandler } 
-                        className={ checked ? 'checkedTodo textTodo' : 'textTodo'}  
-                        value={ text } 
+                component={({ editItemHandler, classes, text }) => 
+                    <input type="text" onChange={ editItemHandler } 
+                        className={ classes } value={ text } 
                     />
                 }
             />

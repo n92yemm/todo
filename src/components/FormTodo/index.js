@@ -7,10 +7,7 @@ import { addTodoItem } from '../../actions/addTodoItem';
 import ListTodo from '../ListTodo';
 import './styles.css';
 import { TODO_FORM } from '../../constants/forms';
-
-const required = value => value ? undefined : 'Required';
-const minLength = min => value => value && value.length < min ? `Must be ${min} characters or more` : undefined;
-const minLength1 = minLength(1);
+import { required, length } from 'redux-form-validators';
 
 class FormTodo extends React.Component {
     render() {
@@ -20,7 +17,7 @@ class FormTodo extends React.Component {
                 <form onSubmit={ handleSubmit(addTodoItem) }>
                     <div id="searchRow">
                         <Field id="typeTodo" className="paddingElem" 
-                            validate={[ required, minLength1 ]}
+                            validate={[required(), length({ min: 1 }) ]} 
                             name="searchField" 
                             component="input" 
                             type="text" 

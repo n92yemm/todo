@@ -5,7 +5,6 @@ import {
 } from '../constants/actionTypes';
 
 export const changeTodoItemChecked = (item) => {
-    console.log('change action');
     return {
         type: CHANGE_TODO_ITEM_CHECKED,
         payload: item

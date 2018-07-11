@@ -35,8 +35,6 @@ module.exports = {
             "error",
             "always"
         ],
-        "no-console": "off",
-        "react/jsx-uses-react": "error", 
-        "react/jsx-uses-vars": "error"
+        "no-console": "off"
     }
 };
