@@ -4,9 +4,10 @@ import {
     EDIT_TODO_ITEM_FAILURE
 } from '../constants/actionTypes';
 
-export const editTodoItem = () => {
+export const editTodoItem = (item) => {
     return {
-        type: EDIT_TODO_ITEM
+        type: EDIT_TODO_ITEM,
+        payload: item
     };
 };
 

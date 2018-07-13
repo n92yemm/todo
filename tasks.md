@@ -2,3 +2,8 @@
 # initial value
 # в state error -> 
 # eslint config
+
+
+createReducer(initFormState, { 
+    [LIST_TODO_FORM]: initForm 
+}) 

@@ -7,16 +7,16 @@ import {
     TODO_ITEM_CHECKED_CHANGED, 
     TODO_ITEM_EDITED, 
 } from '../constants/actionTypes';
-import { LIST_TODO_FORM, INIT_FORM } from '../constants/forms';
+import { LIST_TODO_FORM } from '../constants/forms';
 import createReducer from '../helpers/createReducer';
 
 const initialState = {
     items: []
 };
 
-initFormState = {
+const initFormState = {
     registeredFields: {}
-}
+};
 
 const getTodo = (state, action) => {
     return {
@@ -57,13 +57,15 @@ const todoItemEdited = (state, action) => {
 };
 
 const initForm = (state, action) => {
-    return {
+    const store = {
         ...state,
         registeredFields: {
             ...state.registeredFields.filter(field => field === 'FieldArray'),
             values: state.registeredFields.filter(field => field !== 'FieldArray')
         }
     };
+    console.log('initFormReducer', store);
+    return store;
 };
 
 export const todoItems = createReducer(initialState, {
@@ -73,12 +75,11 @@ export const todoItems = createReducer(initialState, {
     [TODO_ITEM_EDITED]: todoItemEdited
 });
 
-
 export default combineReducers({
     todoItems,
-    form: formReducer.plugin({ 
+    form: formReducer.plugin( 
         createReducer(initFormState, { 
             [LIST_TODO_FORM]: initForm 
         }) 
-    })
+    )
 });

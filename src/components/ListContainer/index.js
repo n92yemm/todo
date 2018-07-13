@@ -12,7 +12,7 @@ const ListContainer  = (props) => {
                 <RowTodo 
                     key={item._id}
                     changeItemHandler={() => changeTodoItemChecked(item)}
-                    editItemHandler={() => editTodoItem(item)}
+                    editItemHandler={() => {console.log('edit');editTodoItem(item);}}
                     todoItem={ item }
                 />) 
             }

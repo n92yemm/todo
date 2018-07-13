@@ -18,7 +18,7 @@ const RowTodo = (props) => {
             <Field 
                 editItemHandler={editItemHandler}
                 classes={ checked ? 'checkedTodo textTodo' : 'textTodo'} 
-                name={`${_id}`} 
+                name={`${_id}.text`} 
                 text={text}
                 type='text' 
                 //component="input" 

@@ -3,7 +3,7 @@ import {
     TODO_ITEMS_RECEIVED,
     GET_TODO_FAILURE
 } from '../constants/actionTypes';
-import { INIT_FORM } from '../constants/forms';
+import { INIT_FORM, INITED_FORM } from '../constants/forms';
 
 export const getTodo = () => {
     return {
@@ -28,5 +28,11 @@ export const getTodoFailure = (error) => {
 export const initForm = () => {
     return {
         type: INIT_FORM
+    };
+};
+
+export const initedForm = () => {
+    return {
+        type: INITED_FORM
     };
 };

@@ -7,7 +7,7 @@ import {
 } from '../constants/actionTypes';
 import { todoItemAdded, addTodoItemFailure } from '../actions/addTodoItem';
 import { todoItemCheckedChanged, todoItemCheckedChangedFailure } from '../actions/changeTodoItemChecked';
-import { todoItemsReceived, getTodoFailure } from '../actions/getTodoItems';
+import { todoItemsReceived, getTodoFailure, initedForm } from '../actions/getTodoItems';
 import request from '../helpers/request';
 import { TODO_URL } from '../constants/urls';
 import { TODO_FORM, INIT_FORM } from '../constants/forms';
@@ -54,9 +54,9 @@ function* changeCheckedTodoItem(action) {
     }
 }
 
-function* initForm() {
-    console.log(1);
-    yield ;
+function* initForm(action) {
+    console.log('action', action);
+    yield put(initedForm());
 }
 
 export default function* todoSaga() {
