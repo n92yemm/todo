@@ -21,10 +21,9 @@ const RowTodo = (props) => {
                 name={`${_id}.text`} 
                 text={text}
                 type='text' 
-                //component="input" 
                 component={({ editItemHandler, classes, text }) => 
-                    <input type="text" onChange={ editItemHandler } 
-                        className={ classes } value={ text } 
+                    <input type="text" onChange={ (event) => editItemHandler(event.target.value) } 
+                        className={ classes } defaultValue={ text } 
                     />
                 }
             />

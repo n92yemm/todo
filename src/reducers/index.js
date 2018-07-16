@@ -33,7 +33,6 @@ const todoItemAdded = (state, action) => {
 };
 
 const todoItemCheckedChanged = (state, action) => {
-   
     return {
         ...state,
         items: state.items.map(item => {
@@ -49,9 +48,10 @@ const todoItemEdited = (state, action) => {
     return {
         ...state,
         items: state.items.map(item => {
-            if(item.text === action.payload.text) {
+            if(item._id === action.payload._id) {
                 return {...item, text: action.payload.text};
             }
+            return item;
         })
     };
 };
@@ -64,7 +64,6 @@ const initForm = (state, action) => {
             values: state.registeredFields.filter(field => field !== 'FieldArray')
         }
     };
-    console.log('initFormReducer', store);
     return store;
 };
 

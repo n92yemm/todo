@@ -8,13 +8,15 @@ const ListContainer  = (props) => {
     const { todo, changeTodoItemChecked, editTodoItem } = props;
     return (
         <div>
-            { todo.map((item) => 
-                <RowTodo 
-                    key={item._id}
-                    changeItemHandler={() => changeTodoItemChecked(item)}
-                    editItemHandler={() => {console.log('edit');editTodoItem(item);}}
-                    todoItem={ item }
-                />) 
+            { todo.map((item) => {
+                return (
+                    <RowTodo 
+                        key={item._id}
+                        changeItemHandler={() => changeTodoItemChecked(item)}
+                        editItemHandler={value => editTodoItem({...item, text: value }) }
+                        todoItem={ item }
+                    />);
+            })
             }
         </div>
     );

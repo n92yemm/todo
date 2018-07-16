@@ -11,10 +11,10 @@ export const editTodoItem = (item) => {
     };
 };
 
-export const todoItemEdited = ({ data }) => {
+export const todoItemEdited = (item) => {
     return {
         type: TODO_ITEM_EDITED,
-        payload: data
+        payload: item
     };
 };
 
